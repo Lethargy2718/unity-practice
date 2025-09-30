@@ -7,8 +7,8 @@ namespace Week1
         static void Main(string[] args)
         {
             //Question1.Run();
-            Question2.Run();
-            //Question3.Run();
+            //Question2.Run();
+            Question3.Run();
         }
     }
 }
