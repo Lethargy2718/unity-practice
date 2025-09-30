@@ -1,0 +1,31 @@
+# C#
+bin/
+obj/
+
+*.user
+*.userprefs
+*.suo
+*.vscode/
+*.vs/
+
+.idea/
+
+# Unity
+*/Library/
+*/Temp/
+*/Obj/
+*/Build/
+*/Builds/
+*/Logs/
+
+*.stacktrace
+
+*.csproj
+*.unityproj
+*.sln
+*.sln.meta
+
+/[Cc]ache/
+
+.DS_Store
+Thumbs.db
