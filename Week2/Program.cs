@@ -7,7 +7,7 @@ namespace Week2
     {
         static void Main()
         {
-            OrderTests.Run();
+            return;
         }
 
         static void TestAll()

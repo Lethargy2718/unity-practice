@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace Week2.Entities.Customers
+﻿namespace Week2.Entities.Customers
 {
     internal class Customer
     {
