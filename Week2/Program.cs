@@ -7,13 +7,14 @@ namespace Week2
     {
         static void Main()
         {
-            TestAll();
+            OrderTests.Run();
         }
 
         static void TestAll()
         {
             CustomerTests.Run();
             ProductTests.Run();
+            OrderTests.Run();
         }
     }
 }

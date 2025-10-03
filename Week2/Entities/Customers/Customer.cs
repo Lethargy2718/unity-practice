@@ -1,18 +1,13 @@
 ﻿using System.Xml.Linq;
 
-namespace Week2.Entities
+namespace Week2.Entities.Customers
 {
     internal class Customer
     {
         private static int nextId = 0;
-        public int Id { get; set; }
+        public int Id { get; private set; } = nextId++;
 
         public required string Phone { get; set; }
-
-        public Customer()
-        {
-            Id = nextId++;
-        }
 
         public virtual void Edit(string? phone = null)
         {

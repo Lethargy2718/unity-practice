@@ -1,10 +1,10 @@
-﻿namespace Week2.Entities
+﻿namespace Week2.Entities.Stock
 {
     internal class Product
     {
         private const double MIN_PRICE = 10.0;
-        private static int next_id = 0;
-        public int Id { get; private set; }
+        private static int nextId = 0;
+        public int Id { get; private set; } = nextId++;
         public int Number { get; set; }
         public required string Name { get; set; }
 
@@ -15,11 +15,6 @@
         {
             get => _price;
             set => _price = Math.Max(MIN_PRICE, value);
-        }
-
-        public Product()
-        {
-            Id = next_id++;
         }
 
         public void Edit(string? name = null, int? number = null, string? description = null, double? price = null)

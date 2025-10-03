@@ -1,6 +1,6 @@
 ﻿using Week2.Entities.Repository;
 
-namespace Week2.Entities
+namespace Week2.Entities.Customers
 {
     internal class Customers : Repository<Customer>
     {

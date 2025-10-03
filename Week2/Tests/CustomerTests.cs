@@ -1,4 +1,4 @@
-﻿using Week2.Entities;
+﻿using Week2.Entities.Customers;
 
 namespace Week2.Tests
 {

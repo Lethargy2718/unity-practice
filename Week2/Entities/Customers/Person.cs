@@ -1,4 +1,4 @@
-﻿namespace Week2.Entities
+﻿namespace Week2.Entities.Customers
 {
     internal class Person : Customer
     {
