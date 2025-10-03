@@ -14,7 +14,11 @@
 
         public void Add(params T[] items) => Items.AddRange(items);
 
-        public void Remove(int id) => Items.RemoveAll(item => GetId(item) == id);
+        public bool Remove(int id)
+        {
+            int removedCount = Items.RemoveAll(item => GetId(item) == id);
+            return removedCount > 0;
+        }
 
         protected abstract int GetId(T item);
 

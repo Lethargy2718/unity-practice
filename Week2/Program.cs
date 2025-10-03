@@ -1,5 +1,6 @@
 ﻿using Week2.Entities;
 using Week2.Tests;
+using Week2.UI;
 
 namespace Week2
 {
@@ -7,7 +8,7 @@ namespace Week2
     {
         static void Main()
         {
-            return;
+            MainMenu.Menu();
         }
 
         static void TestAll()

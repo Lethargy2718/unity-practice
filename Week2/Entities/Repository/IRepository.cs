@@ -5,7 +5,7 @@
         int Count { get; }
         T Find(int id);
         void Add(params T[] items);
-        void Remove(int id);
+        bool Remove(int id);
         string ToString();
     }
 }
