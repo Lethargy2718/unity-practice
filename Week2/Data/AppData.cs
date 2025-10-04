@@ -1,5 +1,7 @@
-﻿using Week2.Entities.Stock;
+﻿using Week2.Entities.Transactions;
 using Week2.Entities.Customers;
+using Week2.Entities.Order;
+using Week2.Entities.Stock;
 
 namespace Week2.Data
 {
@@ -7,11 +9,13 @@ namespace Week2.Data
     {
         public static Stock Stock { get; } = new();
         public static Customers Customers { get; } = new();
+        public static List<Transaction> Transactions { get; set; } = []; // Might switch to repo later. Might also move to customers instead.
 
         static AppData()
         {
             SeedCustomers();
             SeedStock();
+            SeedOrders();
         }
 
         private static void SeedCustomers()
@@ -83,6 +87,47 @@ namespace Week2.Data
                     Price = 59.99
                 }
             );
+        }
+
+        private static void SeedOrders()
+        {
+            var keyboard = Stock.Items.First(p => p.Name == "Mechanical Keyboard");
+            var mouse = Stock.Items.First(p => p.Name == "Wireless Mouse");
+            var monitor = Stock.Items.First(p => p.Name == "HD Monitor");
+            var usbCable = Stock.Items.First(p => p.Name == "USB-C Cable");
+            var headset = Stock.Items.First(p => p.Name == "Gaming Headset");
+
+            var johnDoe = Customers.Items.First(c =>
+                c is Person person && person.FullName == "John Doe");
+            var janeSmith = Customers.Items.First(c =>
+                c is Person person && person.FullName == "Jane Smith");
+            var techCorp = Customers.Items.First(c =>
+                c is Company company && company.CompanyName == "TechCorp");
+
+            var order1 = new Order();
+            order1.Add(new OrderItem(keyboard, 1));
+            order1.Add(new OrderItem(mouse, 2));
+            order1.UpdateStatus(OrderStatus.Paid);
+            johnDoe.Orders.Add(order1);
+
+            var order2 = new Order();
+            order2.Add(new OrderItem(monitor, 1));
+            order2.Add(new OrderItem(usbCable, 3));
+            order2.UpdateStatus(OrderStatus.Hold);
+            janeSmith.Orders.Add(order2);
+
+            var order3 = new Order();
+            order3.Add(new OrderItem(keyboard, 5));
+            order3.Add(new OrderItem(mouse, 10));
+            order3.Add(new OrderItem(headset, 3));
+            order3.UpdateStatus(OrderStatus.New);
+            techCorp.Orders.Add(order3);
+
+            var order4 = new Order();
+            order4.Add(new OrderItem(headset, 1));
+            order4.Add(new OrderItem(usbCable, 2));
+            order4.UpdateStatus(OrderStatus.Cancelled);
+            johnDoe.Orders.Add(order4);
         }
     }
 }

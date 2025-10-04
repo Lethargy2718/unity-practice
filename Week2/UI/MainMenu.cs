@@ -11,6 +11,7 @@
                 Console.WriteLine("1. Customers");
                 Console.WriteLine("2. Stock");
                 Console.WriteLine("3. Shop");
+                Console.WriteLine("4. Transactions");
                 Console.WriteLine("0. Exit");
 
                 string? choice = Console.ReadLine();
@@ -23,7 +24,10 @@
                         StockUI.Menu();
                         break;
                     case "3":
-                        ShopUI.ShopMenu();
+                        ShopUI.Menu();
+                        break;
+                    case "4":
+                        TransactionUI.Menu();
                         break;
                     case "0":
                         return;

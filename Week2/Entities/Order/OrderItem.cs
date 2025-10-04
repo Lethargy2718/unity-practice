@@ -10,32 +10,14 @@ namespace Week2.Entities.Order
         public int Quantity { get; set; } = quantity;
         public double SalePrice => Product.Price * Quantity;
 
-        public bool UpdateQuantity(int newQuantity)
+        public void UpdateQuantity(int newQuantity)
         {
-            int toAdd = newQuantity - Quantity;
-            if (toAdd <= Product.Number)
-            {
-                Quantity = newQuantity;
-                Product.Number -= toAdd;
-                return true;
-            }
-            else
-            {
-                Console.WriteLine($"Cannot update quantity: Attempting to take {toAdd} items out of {Product.Number} total items.");
-                return false;
-            }
+            Quantity = newQuantity;
         }
 
         public static OrderItem operator +(OrderItem original, int quantity)
         {
-            OrderItem copy = new(original.Product, original.Quantity);
-
-            if (!copy.UpdateQuantity(copy.Quantity + quantity))
-            {
-                throw new InvalidOperationException("Not enough stock.");
-            }
-
-            return copy;
+            return new(original.Product, original.Quantity + quantity);
         }
 
         public static OrderItem operator ++(OrderItem original)
@@ -45,21 +27,17 @@ namespace Week2.Entities.Order
 
         public static OrderItem operator -(OrderItem original, int quantity)
         {
-            OrderItem copy = new(original.Product, original.Quantity);
-
-            int newQuantity = copy.Quantity - quantity;
-            if (newQuantity < 0)
-            {
-                throw new InvalidOperationException("Not enough quantity.");
-            }
-
-            copy.Quantity = Math.Max(0, newQuantity);
-            return copy;
+            return new(original.Product, original.Quantity - quantity);
         }
 
         public static OrderItem operator --(OrderItem original)
         {
             return original - 1;
+        }
+
+        public override string ToString()
+        {
+            return $"{Product.Name} x {Quantity} - ${SalePrice:F2}";
         }
     }
 }

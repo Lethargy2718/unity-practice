@@ -13,7 +13,7 @@ namespace Week2.Entities.Order
     internal class Order : Repository<OrderItem>
     {
         private static int nextId = 0;
-        public int Id { get; private set; } = nextId++;
+        public int Id { get; } = nextId++;
         private readonly static Random rng = new();
         public int OrderNumber { get; } = rng.Next(1, 100000);
         public DateTime Date { get; } = DateTime.Now;
@@ -26,7 +26,7 @@ namespace Week2.Entities.Order
 
         public override string ToString()
         {
-            return $"Order Number: {OrderNumber} | Date: {Date} | Total: {Total} | Status: {Status}\n" + base.ToString();
+            return $"Order Number: {OrderNumber} | Date: {Date} | Total: {Total} | Status: {Status}\n" + base.ToString() + '\n';
         }
 
     }

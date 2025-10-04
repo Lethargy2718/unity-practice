@@ -1,5 +1,5 @@
-﻿using Week2.Entities.Stock;
-using Week2.Entities.Order;
+﻿using Week2.Entities.Order;
+using Week2.Entities.Stock;
 
 namespace Week2.Tests
 {

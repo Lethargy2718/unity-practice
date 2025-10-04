@@ -69,8 +69,6 @@ namespace Week2.UI
 
                 if (entityId == -1)
                 {
-                    Console.WriteLine("Delete cancelled.");
-                    InputHelper.WaitForBack();
                     return;
                 }
                 else if (EntityCollection.Remove(entityId))
@@ -96,11 +94,12 @@ namespace Week2.UI
                 if (EntityCollection.Count == 0)
                 {
                     Console.WriteLine($"No {EntityName.ToLower()} found.");
-                    InputHelper.WaitForBack();
-                    return;
+                }
+                else
+                {
+                    Console.WriteLine(EntityCollection);
                 }
 
-                Console.WriteLine(EntityCollection);
                 InputHelper.WaitForBack();
                 return;
             }

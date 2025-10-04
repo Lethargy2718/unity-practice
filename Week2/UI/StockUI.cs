@@ -48,8 +48,6 @@ namespace Week2.UI
 
                 if (productId == -1)
                 {
-                    Console.WriteLine("Edit cancelled.");
-                    InputHelper.WaitForBack();
                     return;
                 }
 
@@ -62,9 +60,7 @@ namespace Week2.UI
                 {
                     Console.WriteLine($"No customer found with ID {productId}. Press Enter...");
                     Console.ReadLine();
-                    continue;
                 }
-
             }
         }
 

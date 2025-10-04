@@ -3,18 +3,11 @@
     internal abstract class Payment
     {
         public DateTime PaidDate { get; set; } = DateTime.Now;
-        private double Amount { get; set; }
+        public double Amount { get; set; }
 
-        // What's this supposed to do..?
-        public double Pay()
+        public override string ToString()
         {
-            return Amount;
-        }
-
-        // This too??
-        public string Update()
-        {
-            return "";
+            return $"Paid Date: {PaidDate} | Amount: {Amount}";
         }
     }
 }

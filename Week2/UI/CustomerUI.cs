@@ -73,41 +73,42 @@ namespace Week2.UI
 
         protected override void EditEntity()
         {
-            Console.Clear();
-            Console.WriteLine("=== Edit Customer ===");
-
-            if (EntityCollection.Count == 0)
+            while(true)
             {
-                Console.WriteLine("No customers found.");
-                InputHelper.WaitForBack();
-                return;
+                Console.Clear();
+                Console.WriteLine("=== Edit Customer ===");
+
+                if (EntityCollection.Count == 0)
+                {
+                    Console.WriteLine("No customers found.");
+                    InputHelper.WaitForBack();
+                    return;
+                }
+
+                Console.WriteLine(EntityCollection);
+                Console.WriteLine();
+
+                int customerId = InputHelper.GetInt("Enter the id of the customer to edit (-1 to cancel)");
+
+                if (customerId == -1)
+                {
+                    return;
+                }
+
+                Customer customer;
+                try
+                {
+                    customer = EntityCollection.Find(customerId);
+                }
+                catch (KeyNotFoundException)
+                {
+                    Console.WriteLine($"No customer found with ID {customerId}. Press Enter...");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                Edit((dynamic)customer);
             }
-
-            Console.WriteLine(EntityCollection);
-            Console.WriteLine();
-
-            int customerId = InputHelper.GetInt("Enter the id of the customer to edit (-1 to cancel)");
-
-            if (customerId == -1)
-            {
-                Console.WriteLine("Edit cancelled.");
-                InputHelper.WaitForBack();
-                return;
-            }
-
-            Customer customer;
-            try
-            {
-                customer = EntityCollection.Find(customerId);
-            }
-            catch (KeyNotFoundException)
-            {
-                Console.WriteLine($"No customer found with ID {customerId}. Press Enter...");
-                Console.ReadLine();
-                return;
-            }
-
-            Edit((dynamic)customer);
         }
 
         private static void Edit(Person person)

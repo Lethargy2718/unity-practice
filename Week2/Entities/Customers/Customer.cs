@@ -1,9 +1,13 @@
-﻿namespace Week2.Entities.Customers
+﻿using Week2.Entities.Order;
+
+namespace Week2.Entities.Customers
 {
     internal class Customer
     {
         private static int nextId = 0;
         public int Id { get; private set; } = nextId++;
+
+        public Orders Orders { get; } = new();
 
         public required string Phone { get; set; }
 
