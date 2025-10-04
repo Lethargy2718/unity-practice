@@ -2,7 +2,7 @@
 {
     internal class Product
     {
-        private const double MIN_PRICE = 10.0;
+        private const double MIN_PRICE = 1.0;
         private static int nextId = 0;
         public int Id { get; private set; } = nextId++;
         public int Number { get; set; }
@@ -27,7 +27,7 @@
 
         public override string ToString()
         {
-            return $"Name: {Name} | Qty: {Number} | Description: {Description} | Price: {Price}";
+            return $"Id: {Id} | Name: {Name} | Qty: {Number} | Description: {Description} | Price: {Price}";
         }
     }
 }

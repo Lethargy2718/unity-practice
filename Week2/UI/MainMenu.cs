@@ -17,10 +17,10 @@
                 switch (choice)
                 {
                     case "1":
-                        CustomerUI.CustomerMenu();
+                        CustomerUI.Menu();
                         break;
                     case "2":
-                        StockUI.StockMenu();
+                        StockUI.Menu();
                         break;
                     case "3":
                         ShopUI.ShopMenu();
