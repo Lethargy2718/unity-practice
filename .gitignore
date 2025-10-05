@@ -1,31 +1,18 @@
-# C#
-bin/
-obj/
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
+**/.history/
 
+.vs/
+**/.vs/
+[Bb]in/
+[Oo]bj/
 *.user
-*.userprefs
 *.suo
-*.vscode/
-*.vs/
-
-.idea/
-
-# Unity
-*/Library/
-*/Temp/
-*/Obj/
-*/Build/
-*/Builds/
-*/Logs/
-
-*.stacktrace
-
-*.csproj
-*.unityproj
-*.sln
-*.sln.meta
-
-/[Cc]ache/
-
-.DS_Store
-Thumbs.db
+*.userosscache
+*.sln.docstates
+*.psess
+*.vsp
+*.vspscc
