@@ -289,6 +289,7 @@ namespace Week2.UI
                     return;
             }
 
+            payment.Amount = order.Total;
             order.UpdateStatus(OrderStatus.Paid);
 
             AppData.Transactions.Add(new Transaction()
