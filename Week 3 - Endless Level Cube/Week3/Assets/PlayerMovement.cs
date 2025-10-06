@@ -5,9 +5,11 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Movement speed in units per second")]
     [Range(0f, 50f)]
     public float speed = 10f;
+    public Rigidbody rb;
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += speed * Time.deltaTime * Vector3.forward;
+        Vector3 movement = speed * Time.fixedDeltaTime * Vector3.forward;
+        rb.MovePosition(rb.position + movement);
     }
 }
