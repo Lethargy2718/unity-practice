@@ -3,10 +3,19 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public Transform player;
-    public Vector3 offset;
+    private Vector3 offset;
+
+    private void Start()
+    {
+        offset = transform.position;
+        offset.z *= 2;
+    }
 
     void Update()
     {
-        transform.position = player.position + offset; 
+        if (player != null)
+        {
+            transform.position = player.position + offset; 
+        }
     }
 }

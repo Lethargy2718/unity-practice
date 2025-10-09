@@ -1,31 +1,49 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Range(0, 50f)]
-    public float forwardSpeed = 10f;
+    [Range(0, 500f)]
+    public float forwardForce = 300f;
 
-    [Range(0, 50f)]
-    public float sidewaysSpeed = 5f;
+    [Range(0, 500f)]
+    public float sidewaysForce = 200f;
 
     public Rigidbody rb;
 
     void FixedUpdate()
     {
-        Vector3 velocity = Vector3.zero;
+        Vector3 force = Vector3.zero;
 
-        velocity += Vector3.forward * forwardSpeed;
+        force += Vector3.forward * forwardForce;
 
         if (Keyboard.current.dKey.isPressed)
         {
-            velocity += Vector3.right * sidewaysSpeed;
+            force += Vector3.right * sidewaysForce;
         }
         else if (Keyboard.current.aKey.isPressed)
         {
-            velocity += Vector3.left * sidewaysSpeed;
+            force += Vector3.left * sidewaysForce;
         }
 
-        rb.linearVelocity = velocity;
+        rb.AddForce(force * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+        if (rb.position.y < -1f)
+        {
+            GameOver();
+        }
+    }
+
+    public void Stop()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    private void GameOver()
+    {
+        GameManager.Instance.EndGame();
+        enabled = false;
     }
 }
