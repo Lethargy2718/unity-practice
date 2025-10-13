@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
-
+    
 public class PlayerMovement : MonoBehaviour
 {
     [Range(0, 500f)]
@@ -31,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.position.y < -1f)
         {
-            GameOver();
+            Die();
         }
     }
 
@@ -41,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    private void GameOver()
+    private void Die()
     {
-        GameManager.Instance.EndGame();
+        GameManager.Instance.Die();
         enabled = false;
     }
 }

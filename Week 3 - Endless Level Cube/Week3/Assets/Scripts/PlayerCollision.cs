@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour
         {
             playerMovement.Stop();
             playerMovement.enabled = false;
-            GameManager.Instance.EndGame();
+            GameManager.Instance.Die();
         }
     }
 }

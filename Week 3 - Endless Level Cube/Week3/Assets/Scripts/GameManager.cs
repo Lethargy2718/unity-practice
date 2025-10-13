@@ -15,12 +15,11 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void EndGame()
+    public void Die()
     {
         if (!gameEnded)
         {
             gameEnded = true;
-            Debug.Log("YOU DIED");
             Invoke(nameof(Restart), 1.5f);
         }
     }
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
         if (!gameEnded)
         {
             gameEnded = true;
-            Debug.Log("YOU WON");
             winUI.SetActive(true);
         }
     }
@@ -39,5 +37,20 @@ public class GameManager : MonoBehaviour
     {
         gameEnded = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        gameEnded = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitGame()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #else
+        Application.Quit();
+    #endif
     }
 }

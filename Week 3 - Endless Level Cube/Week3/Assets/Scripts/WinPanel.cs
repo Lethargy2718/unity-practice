@@ -4,6 +4,6 @@ public class WinPanel : MonoBehaviour
 {
     public void Win()
     {
-        GameManager.Instance.Restart();
+        GameManager.Instance.NextLevel();
     }
 }
