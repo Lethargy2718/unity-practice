@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private bool flapInput;
 
+    private bool flap;
     public float strength = 5f;
     public float gravityScale = 1f;
 
@@ -19,22 +19,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        flapInput = Keyboard.current.spaceKey.wasPressedThisFrame
-                    || Mouse.current.leftButton.wasPressedThisFrame
-                    || (Touchscreen.current?.primaryTouch.press.wasPressedThisFrame ?? false);
+        if (Keyboard.current.spaceKey.wasPressedThisFrame
+            || Mouse.current.leftButton.wasPressedThisFrame
+            || (Touchscreen.current?.primaryTouch.press.wasPressedThisFrame ?? false))
+        {
+            flap = true;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (flapInput)
+        if (flap)
         {
-            Vector2 v = rb.linearVelocity;
-            v.y = 0f;
-            rb.linearVelocity = v;
-
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * strength, ForceMode2D.Impulse);
-
-            flapInput = false;
+            flap = false;
         }
     }
 }
