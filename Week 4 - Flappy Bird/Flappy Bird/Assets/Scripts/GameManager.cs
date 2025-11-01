@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public float restartDelay = 1.5f;
     public GameObject winUI;
 
+    public float scrollSpeed = 0.6f;
+
+
     void Awake()
     {
         Instance = this;
@@ -16,10 +19,10 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
             Application.Quit();
-        #endif
+#endif
     }
 }
