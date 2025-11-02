@@ -9,6 +9,7 @@ public class Pipes : MonoBehaviour
     {
         mainCamera = Camera.main;        
     }
+
     void Update()
     {
         transform.position += GameManager.Instance.scrollSpeed * Time.deltaTime * speedMultiplier * Vector3.left;
@@ -17,10 +18,11 @@ public class Pipes : MonoBehaviour
 
     private void CheckBounds()
     {
-        double left = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x - 10.0;
+        double left = mainCamera.ViewportToWorldPoint(Vector3.zero).x - 10.0;
         if (transform.position.x < left)
         {
             Destroy(gameObject);
         }
+
     }
 }

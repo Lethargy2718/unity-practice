@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
     public GameObject prefab;
     private Coroutine spawnCoroutine;
 
-    public float spawnRate = 1f;
+    public float pipeSpacing = 2f;
     public float minHeight = -1f;
     public float maxHeight = 1f;
 
@@ -28,7 +28,8 @@ public class Spawner : MonoBehaviour
             Vector3 spawnPos = transform.position;
             spawnPos.y += Random.Range(minHeight, maxHeight);
             Instantiate(prefab, spawnPos, Quaternion.identity);
-            yield return new WaitForSeconds(spawnRate);
+            float delay = pipeSpacing / GameManager.Instance.scrollSpeed;
+            yield return new WaitForSeconds(delay);
         }
     }
 }

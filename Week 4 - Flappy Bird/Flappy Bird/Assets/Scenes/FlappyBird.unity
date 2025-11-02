@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 11753611}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +301,9 @@ MonoBehaviour:
   gameEnded: 0
   restartDelay: 1.5
   winUI: {fileID: 0}
-  scrollSpeed: 0.6
+  scrollSpeed: 0.7
+  scale: 200
+  gain: 5
 --- !u!4 &432586175
 Transform:
   m_ObjectHideFlags: 0
@@ -362,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
   prefab: {fileID: 5591622106218825734, guid: 70ca0a6df03bede41b5ab642a2a2b49b, type: 3}
-  spawnRate: 1.7
+  pipeSpacing: 1
   minHeight: -1
   maxHeight: 3
 --- !u!1 &519420028
@@ -741,7 +743,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.23243234
+  m_Radius: 0.24731597
 --- !u!114 &1555482306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,13 +760,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 65b1a0389b8fd8349b3d8bba4ce9772f, type: 3}
   - {fileID: 21300000, guid: 439620ead7eb83d42b5ab3b2f1a861b7, type: 3}
   - {fileID: 21300000, guid: 5c45449bb8f01704389f9bac1327382a, type: 3}
-  animationMinSpeed: 5
-  animationMaxSpeed: 25
-  strength: 5
-  gravityScale: 1.5
-  maxRotation: 50
-  rotationSpeed: 8
-  rotationSensitivity: 3
+  animationMinSpeed: 1
+  animationMaxSpeed: 20
+  strength: 7
+  gravityScale: 2.7
+  maxRotation: 54
+  rotationSpeed: 3
+  rotationSensitivity: 6
 --- !u!1 &1808563593
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +851,7 @@ Transform:
   m_GameObject: {fileID: 1808563593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 30, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -867,7 +869,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969954498cfbfd14ca23ed4ef09089d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
-  speedMultiplier: 0.4
+  speedMultiplier: 0.3
+--- !u!1 &2102367956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102367958}
+  - component: {fileID: 2102367957}
+  m_Layer: 0
+  m_Name: Roof
+  m_TagString: Obstacle
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &2102367957
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102367956}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -8.828093, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 29.958942, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &2102367958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102367956}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.77598, y: 5.52, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -879,3 +959,4 @@ SceneRoots:
   - {fileID: 1808563596}
   - {fileID: 11753610}
   - {fileID: 492227597}
+  - {fileID: 2102367958}

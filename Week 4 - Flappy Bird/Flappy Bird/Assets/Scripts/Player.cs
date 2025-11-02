@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            spriteIndex = (spriteIndex + 1) % sprites.Length;
+            spriteIndex = ++spriteIndex % sprites.Length;
             sr.sprite = sprites[spriteIndex];
 
             yield return new WaitForSeconds(SecondsPerFrame());
@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
     private float SecondsPerFrame()
     {
         float t = Mathf.InverseLerp(yMax, yMin, rb.position.y);
+        t = Mathf.Sqrt(t);
         float fps = Mathf.Lerp(animationMinSpeed, animationMaxSpeed, t);
         return 1f / fps;
     }
@@ -103,5 +104,20 @@ public class Player : MonoBehaviour
         float targetRotation = Mathf.Clamp(rb.linearVelocity.y * rotationSensitivity, -maxRotation, maxRotation);
         float zRotation = Mathf.LerpAngle(transform.eulerAngles.z, targetRotation, rotationSpeed * Time.fixedDeltaTime);
         transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Scoring")) {
+            GameManager.Instance.IncreaseScore();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 }
