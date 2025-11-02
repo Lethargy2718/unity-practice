@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    private Player player;
+    private Parallax parallax;
 
     [HideInInspector]
     public bool gameEnded = false;
@@ -26,45 +26,77 @@ public class GameManager : MonoBehaviour
     public float gain = 5f; // higher gain => faster growth
 
     private float initialSpeed;
-    private int score = 0;
 
-    void Awake()
+    [Header("UI Elements")]
+    public GameObject playBtn;
+    public GameObject gameOver;
+
+    private void Awake()
     {
         Instance = this;
+        player = FindAnyObjectByType<Player>();
+        parallax = FindAnyObjectByType<Parallax>();
+        Pause();
+
+    }
+
+    private void Start()
+    {
         initialSpeed = scrollSpeed;
     }
 
-    public void IncreaseScore()
+    public void Play()
     {
-        score++;
-        Debug.Log(score);
+        ScoreManager.Instance.ResetScore();
 
+        gameOver.SetActive(false);
+        playBtn.SetActive(false);
+
+        Pipes[] pipes = FindObjectsByType<Pipes>(FindObjectsSortMode.None);
+        foreach (Pipes pipe in pipes)
+        {
+            Destroy(pipe.gameObject);
+        }
+
+        Unpause();
+    }
+
+    public void GameOver()
+    {
+        Pause();
+        gameOver.SetActive(true);
+
+        StartCoroutine(ShowPlayBtnCoroutine());
+
+        IEnumerator ShowPlayBtnCoroutine()
+        {
+            yield return new WaitForSecondsRealtime(1f);
+            playBtn.SetActive(true);
+        }
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0f;
+        if (player != null) player.enabled = false;
+        if (parallax != null) parallax.enabled = false;
+    }
+
+    private void Unpause()
+    {
+        Time.timeScale = 1f;
+        if (player != null) player.enabled = true;
+        if (parallax != null) parallax.enabled = true;
+    }
+
+    public void SetDifficulty(float score)
+    {
         // Ramp up quickly at first then flatten to prevent unplayable late-game speeds
         scrollSpeed = Mathf.Clamp(
             initialSpeed + Mathf.Log10(score / scale + 1) * gain,
             initialSpeed,
             2f
         );
-
-        Debug.Log(scrollSpeed);
-    }
-
-    public void GameOver()
-    {
-        Time.timeScale = 0f;
-        StartCoroutine(RestartCoroutine());
-
-        IEnumerator RestartCoroutine()
-        {
-            yield return new WaitForSecondsRealtime(restartDelay);
-            Restart();
-        }
-    }
-
-    public void Restart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()

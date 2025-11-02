@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 5f;
     public float rotationSensitivity = 5f;
 
-
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -42,9 +41,15 @@ public class Player : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        Reset();
+    }
+
     private void Start()
     {
         StartCoroutine(AnimateSpriteCoroutine());
+        SetAnimationSpeed();
     }
 
     private void Update()
@@ -55,8 +60,6 @@ public class Player : MonoBehaviour
         {
             flap = true;
         }
-
-        SetAnimationSpeed();
     }
 
     private void FixedUpdate()
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour
     private float SecondsPerFrame()
     {
         float t = Mathf.InverseLerp(yMax, yMin, rb.position.y);
-        t = Mathf.Sqrt(t);
+        t *= t;
         float fps = Mathf.Lerp(animationMinSpeed, animationMaxSpeed, t);
         return 1f / fps;
     }
@@ -96,7 +99,7 @@ public class Player : MonoBehaviour
     {
         if (!mainCamera) return;
         yMin = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
-        yMax = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+        yMax = mainCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y + 3.0f; // ground offset
     }
 
     private void HandleRotation()
@@ -106,10 +109,18 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
     }
 
+    public void Reset()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = 0f;
+        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        spriteIndex = 0;
+    }   
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Scoring")) {
-            GameManager.Instance.IncreaseScore();
+            ScoreManager.Instance.IncreaseScore();
         }
     }
 

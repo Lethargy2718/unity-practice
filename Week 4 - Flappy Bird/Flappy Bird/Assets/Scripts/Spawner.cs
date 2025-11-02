@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        spawnCoroutine = StartCoroutine(SpawnCoroutine());        
+        spawnCoroutine = StartCoroutine(SpawnCoroutine());
     }
 
     private void OnDisable()
