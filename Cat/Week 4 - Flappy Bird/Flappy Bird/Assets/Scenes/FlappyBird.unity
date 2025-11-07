@@ -1333,8 +1333,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 65b1a0389b8fd8349b3d8bba4ce9772f, type: 3}
   - {fileID: 21300000, guid: 439620ead7eb83d42b5ab3b2f1a861b7, type: 3}
   - {fileID: 21300000, guid: 5c45449bb8f01704389f9bac1327382a, type: 3}
-  animationMinSpeed: 1
-  animationMaxSpeed: 30
+  animationMinSpeed: 0.1
+  animationMaxSpeed: 50
   strength: 7
   gravityScale: 2.7
   maxRotation: 54
