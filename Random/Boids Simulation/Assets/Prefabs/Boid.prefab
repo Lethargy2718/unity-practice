@@ -105,10 +105,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxSpeed: 7
   maxForce: 10
-  rotationSpeed: 5
+  rotationSpeed: 8
   sw: 1.5
   aw: 2
   cw: 5
-  fw: 3
+  fw: 10
   radius: 2
   separationDist: 0.8
