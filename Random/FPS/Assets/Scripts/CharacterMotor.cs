@@ -8,6 +8,7 @@ public class CharacterMotor : MonoBehaviour
     [SerializeField] private float sprintSpeedMultiplier = 1.5f;
     [SerializeField] private float dashMultiplier = 2.0f;
     [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private bool preserveDashVerticalVelocity = true;
     [SerializeField] private float velocitySmoothSpeed = 10.0f;
     [SerializeField] private float jumpForce = 10.0f;
     [SerializeField] private float gravity = 9.8f;
@@ -140,10 +141,11 @@ public class CharacterMotor : MonoBehaviour
         canDash = true;
         isDashing = false;
 
-        // Preserve velocity.y for a smoother transition into falling
-        yVelocity = controller.velocity.y;
-
+        // Preserve velocity to smoothly lerp into the non-dashing velocity later
         currentVelocity = controller.velocity;
+
+        // Optionally preserve yVelocity which causes the player to float/glide for a while after dashing in air
+        if (preserveDashVerticalVelocity) yVelocity = controller.velocity.y;
     }
 
     public void ToggleSprint(bool sprint)
