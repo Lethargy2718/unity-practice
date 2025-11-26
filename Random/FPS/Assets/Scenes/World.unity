@@ -628,10 +628,10 @@ MonoBehaviour:
   velocitySmoothSpeed: 10
   jumpForce: 25
   gravity: 50
-  bobFrequency: 1
-  bobAmplitude: 0.2
+  bobFrequency: 1.6
+  bobAmplitude: 0.35
   baseFOV: 75
-  fovChange: 0.9
+  fovChange: 1.1
 --- !u!114 &170550234
 MonoBehaviour:
   m_ObjectHideFlags: 0
