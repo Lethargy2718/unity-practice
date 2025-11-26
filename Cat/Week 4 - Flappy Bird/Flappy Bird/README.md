@@ -1,10 +1,12 @@
 # Flappy Bird
 
-**Flappy Bird** clone with exponentially rising difficulty.
+A **Flappy Bird** clone with exponentially rising difficulty.
 
 ---
 
 ## Demo
+
+![Demo](docs/demo.gif)
 
 ---
 
