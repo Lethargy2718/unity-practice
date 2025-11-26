@@ -6,3 +6,4 @@ Just a port of [STUCK](https://github.com/OmarCompiled/Stuck_NULL_BYTES)’s cha
 
 ## Demo
 
+![Demo](docs/demo.gif)
